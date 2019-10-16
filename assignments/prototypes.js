@@ -41,6 +41,7 @@ function CharacterStats(obj) {
 CharacterStats.prototype = Object.create(GameObject.prototype);
 
 CharacterStats.prototype.takeDamage = function() {
+  this.healthPoints -= 1;
   return `${this.name} took damage.`;
 };
 
@@ -132,3 +133,86 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+function Villain(obj) {
+  Humanoid.call(this, obj);
+}
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+Villain.prototype.attack = function(obj) {
+  obj.takeDamage();
+  obj.healthPoints -= 1;
+};
+
+function Hero(obj) {
+  Humanoid.call(this, obj);
+}
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+Hero.prototype.attack = function(obj) {
+  obj.takeDamage();
+  obj.healthPoints -= 1;
+};
+
+const Joker = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 10,
+  name: 'Joker',
+  team: 'Clowns',
+  weapons: ['Fists', 'Knife'],
+  language: 'English',
+});
+
+const Batman = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 5,
+  },
+  healthPoints: 15,
+  name: 'Batman',
+  team: 'Bats',
+  weapons: ['Fists', 'Batarangs'],
+  language: 'English',
+});
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
+
+console.log(Batman.takeDamage.call(Joker));
+console.log(Joker.takeDamage.call(Batman));
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
+
+console.log(Batman.takeDamage.call(Joker));
+console.log(Joker.takeDamage.call(Batman));
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
+
+console.log(Batman.takeDamage.call(Joker));
+console.log(Joker.takeDamage.call(Batman));
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
+
+console.log(Batman.takeDamage.call(Joker));
+console.log(Joker.takeDamage.call(Batman));
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
+
+console.log(Batman.takeDamage.call(Joker));
+console.log(Joker.takeDamage.call(Batman));
+
+console.log(`Batman HP:${Batman.healthPoints}`);
+console.log(`Joker HP:${Joker.healthPoints}`);
